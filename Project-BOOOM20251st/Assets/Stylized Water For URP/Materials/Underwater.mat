@@ -49,7 +49,7 @@ Material:
     - _RefractionStrength: 0.014
     m_Colors:
     - _NormalsMovement: {r: 0.035, g: 0.22, b: 0, a: 0}
-    - _WaterColorUnderwater: {r: 0.4064956, g: 0.42451802, b: 0.4087484, a: 0}
+    - _WaterColorUnderwater: {r: 0.5329743, g: 0.5566037, b: 0.5388817, a: 0}
     - _WaveDirections: {r: 0, g: 0.64, b: 1, a: 0.33}
     - _WaveVisuals: {r: 0.132, g: 7.9, b: 1.38, a: 0}
   m_BuildTextureStacks: []
