@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 
 public class BuildingPanel : MonoBehaviour
@@ -16,12 +15,6 @@ public class BuildingPanel : MonoBehaviour
         panel.alpha = 0;
         panel.interactable = false;
         panel.blocksRaycasts = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void OpenPenal()
