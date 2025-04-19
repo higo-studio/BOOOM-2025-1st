@@ -4,9 +4,6 @@
     "m_ObjectId": "bc35c9906b3f406ea865cb855d8a34c3",
     "m_Properties": [
         {
-            "m_Id": "7369e2482dde4108a68548c888353b37"
-        },
-        {
             "m_Id": "0ff96db442064373b54262f70a2f6855"
         },
         {
@@ -963,9 +960,6 @@
     "m_Name": "",
     "m_ChildObjectList": [
         {
-            "m_Id": "7369e2482dde4108a68548c888353b37"
-        },
-        {
             "m_Id": "0ff96db442064373b54262f70a2f6855"
         },
         {
@@ -1173,36 +1167,6 @@
         "z": 0.0,
         "w": 0.0
     }
-}
-
-{
-    "m_SGVersion": 3,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
-    "m_ObjectId": "7369e2482dde4108a68548c888353b37",
-    "m_Guid": {
-        "m_GuidSerialized": "68904b3f-0fba-4045-973e-d597522ff574"
-    },
-    "m_Name": "Color",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Color",
-    "m_DefaultReferenceName": "_Color",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-    },
-    "isMainColor": false,
-    "m_ColorMode": 0
 }
 
 {
