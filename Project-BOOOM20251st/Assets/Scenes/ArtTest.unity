@@ -12597,7 +12597,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a0f631408cd8dc04c926f4f7d32f27d4, type: 2}
     - target: {fileID: 1601693967802005805, guid: b1b6a4a4712a0364bbffc21e45491ba2, type: 3}
       propertyPath: m_Name
-      value: Square Water
+      value: Water
       objectReference: {fileID: 0}
     - target: {fileID: 2333152634366561086, guid: b1b6a4a4712a0364bbffc21e45491ba2, type: 3}
       propertyPath: m_LocalScale.x
