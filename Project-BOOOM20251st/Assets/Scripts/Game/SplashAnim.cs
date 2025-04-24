@@ -48,7 +48,7 @@ public class TextureChanger : MonoBehaviour
     }
 
 
-        void OnDestroy()
+    void OnDestroy()
     {
         // 停止调用 ChangeTexture 方法
         CancelInvoke("ChangeTexture");

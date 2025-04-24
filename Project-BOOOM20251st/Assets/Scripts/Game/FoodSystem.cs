@@ -17,12 +17,18 @@ public class FoodSystem: MonoSingleton<FoodSystem>
     private Coroutine generateCoroutine;
     
     
-    private HashSet<FoodUnit> StayingFoods = new HashSet<FoodUnit>();
-    private HashSet<FoodUnit> CarryingFoods = new HashSet<FoodUnit>();
+    public HashSet<FoodUnit> StayingFoods = new HashSet<FoodUnit>();
+    public HashSet<FoodUnit> CarryingFoods = new HashSet<FoodUnit>();
 
     protected override void OnInitializing()
     {
-        
+        StartGenerate();
+    }
+
+    public void JoinFood(FoodUnit unit)
+    {
+        CarryingFoods.Remove(unit);
+        StayingFoods.Add(unit);
     }
 
     public void CarryFood(FoodUnit unit)

@@ -24,8 +24,8 @@ public class MainLoop : MonoBehaviour
         // 初始化
         CurRound = 1;
         DOTween.Init();
-        FoodSystem.CreateInstance();
-        ResourceSystem.CreateInstance();
+        // FoodSystem.CreateInstance();
+        // ResourceSystem.CreateInstance();
     }
 
     void FixedUpdate() 
@@ -37,6 +37,8 @@ public class MainLoop : MonoBehaviour
             CurRound++;
             NextRound();
         }
+        // 测试先这么写
+        BugSystem.Instance.Decide();
     }
 
     void Update()
