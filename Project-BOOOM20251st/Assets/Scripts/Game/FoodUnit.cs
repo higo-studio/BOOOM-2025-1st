@@ -2,5 +2,12 @@ using UnityEngine;
 
 public class FoodUnit : MonoBehaviour
 {
-    public int ResourceNum = 3;
+    public int ResourceNum = 1;
+    
+    private void Awake() 
+    {
+        
+    }
+
 }
+
