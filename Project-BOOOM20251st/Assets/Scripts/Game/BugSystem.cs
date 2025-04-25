@@ -12,6 +12,13 @@ public class BugSystem : MonoSingleton<BugSystem>
 
     private HashSet<BugUnit> bugs = new();
 
+    public static bool BeenCleaned = false;
+
+    protected override void OnInitializing()
+    {
+        BeenCleaned = false;
+    }
+
     public void AddBug(BugUnit bug)
     {
         bugs.Add(bug);
@@ -62,6 +69,16 @@ public class BugSystem : MonoSingleton<BugSystem>
         
     }
 
+    public override void ClearSingleton()
+    {
+        BeenCleaned = true;
+    }
+
+
+    private void OnDestroy() 
+    {
+        ClearSingleton();
+    }
 }
 
 

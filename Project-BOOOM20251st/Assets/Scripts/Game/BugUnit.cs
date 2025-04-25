@@ -25,6 +25,8 @@ public class BugUnit : MonoBehaviour
 
     void OnDestroy()
     {
+        if (BugSystem.BeenCleaned)
+            return;
         BugSystem.Instance.RemoveBug(this);
     }
 
@@ -76,6 +78,7 @@ public class BugUnit : MonoBehaviour
         else
             targetPos = ((Component)target).transform.position;
         Debug.Log(targetPos);
+
     }
 
 }
