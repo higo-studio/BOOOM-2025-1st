@@ -4,20 +4,13 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
-public class BugSystem : MonoSingleton<BugSystem>
+public class BugSystem : MonoBehaviour
 {
-    public int OriginHP { get { return UpgradeSystem.Instance.bugData.HP; } }
-    public float MoveSpeed { get { return UpgradeSystem.Instance.bugData.MoveSpeed; } }
-    public int CarryNum { get { return UpgradeSystem.Instance.bugData.CarryNum; } }
+    public int OriginHP { get { return MainLoop.Instance.UpgradeSystem.bugData.HP; } }
+    public float MoveSpeed { get { return MainLoop.Instance.UpgradeSystem.bugData.MoveSpeed; } }
+    public int CarryNum { get { return MainLoop.Instance.UpgradeSystem.bugData.CarryNum; } }
 
     private HashSet<BugUnit> bugs = new();
-
-    public static bool BeenCleaned = false;
-
-    protected override void OnInitializing()
-    {
-        BeenCleaned = false;
-    }
 
     public void AddBug(BugUnit bug)
     {
@@ -43,7 +36,7 @@ public class BugSystem : MonoSingleton<BugSystem>
         {
             if (!bug.CanCarryMore)
                 continue;
-            foreach (var food in FoodSystem.Instance.StayingFoods)
+            foreach (var food in MainLoop.Instance.FoodSystem.StayingFoods)
             {
                 if (food.BeingTargeted)
                     continue;
@@ -67,17 +60,6 @@ public class BugSystem : MonoSingleton<BugSystem>
     private void DoFreeRandom()
     {
         
-    }
-
-    public override void ClearSingleton()
-    {
-        BeenCleaned = true;
-    }
-
-
-    private void OnDestroy() 
-    {
-        ClearSingleton();
     }
 }
 

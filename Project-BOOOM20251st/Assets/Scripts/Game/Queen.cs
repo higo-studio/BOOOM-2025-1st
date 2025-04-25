@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityCommunity.UnitySingleton;
 
-public class Queen: MonoSingleton<Queen>
+public class Queen: MonoBehaviour
 {
     [SerializeField]
     protected QueenData queenData;
@@ -10,7 +10,7 @@ public class Queen: MonoSingleton<Queen>
     public int SpawnBugCost => queenData.SpawnBugCost;
     public int HP;
 
-    protected override void OnInitialized() 
+    private void Start() 
     {
         HP = OriginHp;
     }

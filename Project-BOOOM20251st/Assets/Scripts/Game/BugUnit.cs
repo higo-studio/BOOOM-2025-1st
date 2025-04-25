@@ -19,18 +19,16 @@ public class BugUnit : MonoBehaviour
     [SerializeField]
     private System.Object target;
 
-    void Awake()
+    void Start()
     {
         state = BugState.FREE;
-        HP = BugSystem.Instance.OriginHP;
-        BugSystem.Instance.AddBug(this);
+        HP = MainLoop.Instance.BugSystem.OriginHP;
+        MainLoop.Instance.BugSystem.AddBug(this);
     }
 
     void OnDestroy()
     {
-        if (BugSystem.BeenCleaned)
-            return;
-        BugSystem.Instance.RemoveBug(this);
+        MainLoop.Instance.BugSystem.RemoveBug(this);
     }
 
     public bool CanCarryMore 
@@ -45,22 +43,22 @@ public class BugUnit : MonoBehaviour
             if (target is not Queen)
                 return false;
             int carryingCount = target is FoodUnit ? carryingFoodList.Count + 1 : carryingFoodList.Count;
-            return carryingCount < BugSystem.Instance.CarryNum;
+            return carryingCount < MainLoop.Instance.BugSystem.CarryNum;
         }
     }
 
     public void CarryFood(FoodUnit food)
     {
         carryingFoodList.Add(food);
-        FoodSystem.Instance.CarryFood(food);
-        target = Queen.Instance;
+        MainLoop.Instance.FoodSystem.CarryFood(food);
+        target = MainLoop.Instance.Queen;
     }
 
     public void PutFood()
     {
         foreach (var food in carryingFoodList)
         {
-            FoodSystem.Instance.StorageFood(food);
+            MainLoop.Instance.FoodSystem.StorageFood(food);
         }
         carryingFoodList.Clear();
         target = null;
@@ -113,14 +111,13 @@ public class BugUnit : MonoBehaviour
         else
             targetPos = ((Component)target).transform.position;
         // 暂时移动只考虑x轴
-        var moveDelta = Time.deltaTime * BugSystem.Instance.MoveSpeed * (targetPos.x - transform.position.x) / Mathf.Abs(targetPos.x - transform.position.x);
+        var moveDelta = Time.deltaTime * MainLoop.Instance.BugSystem.MoveSpeed * (targetPos.x - transform.position.x) / Mathf.Abs(targetPos.x - transform.position.x);
         transform.Translate(new Vector3(moveDelta, 0, 0), Space.World);
         // 更新背上的食物位置
         for (int i = 0; i < carryingFoodList.Count; i++)
         {
             carryingFoodList[i].transform.position = transform.position + new Vector3(0, 1 + 2 * i, 0);
         }
-
     }
 
 }

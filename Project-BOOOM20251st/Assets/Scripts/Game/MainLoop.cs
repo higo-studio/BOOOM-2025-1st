@@ -4,7 +4,15 @@ using System;
 
 public class MainLoop : MonoBehaviour
 {
+    [Header("系统逻辑")]
+    public BugSystem BugSystem;
+    public FoodSystem FoodSystem;
+    public Queen Queen;
+    public ResourceSystem ResourceSystem;
+    public UpgradeSystem UpgradeSystem;
+    public Floor Floor;
 
+    [Header("系统定义")]
     [Tooltip("当前回合数")]
     public int CurRound = 0;
     [Tooltip("每回合时间")]
@@ -17,15 +25,18 @@ public class MainLoop : MonoBehaviour
     public int MaxRound = 15;
     public float TransitionTime = 1f;
     
-    
+    public static MainLoop Instance = null;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
         // 初始化
         CurRound = 1;
         DOTween.Init();
-        // FoodSystem.CreateInstance();
-        // ResourceSystem.CreateInstance();
     }
 
     void FixedUpdate() 
@@ -38,7 +49,7 @@ public class MainLoop : MonoBehaviour
             NextRound();
         }
         // 测试先这么写
-        BugSystem.Instance.Decide();
+        BugSystem.Decide();
     }
 
     void Update()
@@ -49,21 +60,19 @@ public class MainLoop : MonoBehaviour
     void NextRound()
     {
         // 结算血量、粮食等
-        var queen = Queen.Instance;
-        var foodSystem = FoodSystem.Instance;
-        var roundCostFood = queen.PerDayCost[CurRound - 1];
-        if (roundCostFood > foodSystem.FoodNum)
+        var roundCostFood = Queen.PerDayCost[CurRound - 1];
+        if (roundCostFood > FoodSystem.FoodNum)
         {
             // 食物不足，扣血
-            queen.HP -= 1;
-            if (queen.HP <= 0)
+            Queen.HP -= 1;
+            if (Queen.HP <= 0)
             {
                 GameOver();
                 return;
             }
         }
-        foodSystem.SpendFood(Math.Min(roundCostFood, foodSystem.FoodNum));
         // 切换、移动场景
+        FoodSystem.SpendFood(Math.Min(roundCostFood, FoodSystem.FoodNum));
     }
 
     void GameOver()

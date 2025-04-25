@@ -7,7 +7,7 @@ public class FoodUnit : MonoBehaviour
     
     private void Start() 
     {
-        FoodSystem.Instance.JoinFood(this);
+        MainLoop.Instance.FoodSystem.JoinFood(this);
     }
 
     public void BeenCarryed()

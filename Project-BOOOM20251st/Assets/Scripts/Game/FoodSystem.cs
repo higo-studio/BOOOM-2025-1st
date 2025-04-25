@@ -4,8 +4,9 @@ using UnityCommunity.UnitySingleton;
 using System.Collections;
 using System;
 
-public class FoodSystem: MonoSingleton<FoodSystem>
-{
+public class FoodSystem: MonoBehaviour
+{   
+    [SerializeField]
     public int FoodNum { get; private set; } = 0;
     
     [Tooltip("随机生成食物的间隔时间")]public float RandomGenerateTime = 10f;
@@ -20,7 +21,7 @@ public class FoodSystem: MonoSingleton<FoodSystem>
     public HashSet<FoodUnit> StayingFoods = new HashSet<FoodUnit>();
     public HashSet<FoodUnit> CarryingFoods = new HashSet<FoodUnit>();
 
-    protected override void OnInitializing()
+    protected void Start()
     {
         StartGenerate();
     }
@@ -69,11 +70,11 @@ public class FoodSystem: MonoSingleton<FoodSystem>
         while(true)
         {
             var food = Instantiate(FoodUnitPrefab);
-            food.parent = Floor.Instance.transform;
+            food.parent = MainLoop.Instance.Floor.transform;
             var randomX = UnityEngine.Random.Range(GenerateRange.x, GenerateRange.y);
             // 获取地板的生成位置位置
             // 这里仅测试
-            var position = Floor.Instance.transform.position;
+            var position = MainLoop.Instance.Floor.transform.position;
             position.x = randomX;
             position.y += 5;
             food.position = position;

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityCommunity.UnitySingleton;
 
 [System.Serializable]
 public struct BugData
@@ -10,7 +9,7 @@ public struct BugData
     public int CarryNum;
 }
 
-public class UpgradeSystem: MonoSingleton<UpgradeSystem>
+public class UpgradeSystem: MonoBehaviour
 {
     [SerializeField]
     public BugData bugData;
