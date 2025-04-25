@@ -106,6 +106,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 50b2e3c697e364c43bfb073ddf1c1a96, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6708467702458567230}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 50b2e3c697e364c43bfb073ddf1c1a96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5928982488486818}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 50b2e3c697e364c43bfb073ddf1c1a96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2844957693550907277}
   m_SourcePrefab: {fileID: 100100000, guid: 50b2e3c697e364c43bfb073ddf1c1a96, type: 3}
 --- !u!1 &3022242917930284600 stripped
 GameObject:
@@ -146,3 +152,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32dfcf4a724b1d749b1e4fbb3e37f320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carryingFoodList: []
+--- !u!65 &5928982488486818
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3022242917930284600}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 2, z: 0}
+--- !u!54 &2844957693550907277
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3022242917930284600}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0

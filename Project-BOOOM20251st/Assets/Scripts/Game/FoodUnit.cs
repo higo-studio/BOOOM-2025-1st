@@ -17,10 +17,12 @@ public class FoodUnit : MonoBehaviour
 
     public void BeenPut()
     {
+        Destroy(gameObject);
     }
 
     public void BeenDrop()
     {
+
     }
 
 }

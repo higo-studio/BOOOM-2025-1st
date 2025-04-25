@@ -40,6 +40,7 @@ public class FoodSystem: MonoSingleton<FoodSystem>
     public void StorageFood(FoodUnit unit)
     {
         CarryingFoods.Remove(unit);
+        unit.BeenPut();
         FoodNum += unit.ResourceNum;
     }
     
