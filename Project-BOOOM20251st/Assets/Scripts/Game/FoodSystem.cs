@@ -4,20 +4,20 @@ using UnityCommunity.UnitySingleton;
 using System.Collections;
 using System;
 
-public class FoodSystem: MonoBehaviour
-{   
+public class FoodSystem : MonoBehaviour
+{
     [SerializeField]
     public int FoodNum { get; private set; } = 0;
-    
-    [Tooltip("随机生成食物的间隔时间")]public float RandomGenerateTime = 10f;
-    [Tooltip("食物预制体")]public Transform FoodUnitPrefab;
+
+    [Tooltip("随机生成食物的间隔时间")] public float RandomGenerateTime = 10f;
+    [Tooltip("食物预制体")] public Transform FoodUnitPrefab;
     [Header("随机生成食物的范围")]
     public Vector2 GenerateRange = new Vector2(-40, 40);
 
-    
+
     private Coroutine generateCoroutine;
-    
-    
+
+
     public HashSet<FoodUnit> StayingFoods = new HashSet<FoodUnit>();
     public HashSet<FoodUnit> CarryingFoods = new HashSet<FoodUnit>();
 
@@ -44,12 +44,12 @@ public class FoodSystem: MonoBehaviour
         unit.BeenPut();
         FoodNum += unit.ResourceNum;
     }
-    
+
     public void SpendFood(int num)
     {
         FoodNum = Math.Max(0, FoodNum - num);
     }
-    
+
     public void StartGenerate()
     {
         if (generateCoroutine != null)
@@ -67,10 +67,10 @@ public class FoodSystem: MonoBehaviour
 
     public IEnumerator GenerateFoodRadom()
     {
-        while(true)
+        while (true)
         {
             var food = Instantiate(FoodUnitPrefab);
-            food.parent = MainLoop.Instance.Floor.transform;
+            food.parent = GameObject.Find("ResourceGroup").transform;
             var randomX = UnityEngine.Random.Range(GenerateRange.x, GenerateRange.y);
             // 获取地板的生成位置位置
             // 这里仅测试

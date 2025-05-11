@@ -27,9 +27,10 @@ public class MainLoop : MonoBehaviour
     [Header("最大回合数")]
     public int MaxRound = 15;
     public float TransitionTime = 1f;
-    
+
     [Header("背景音乐")]
     public MainAudioLibraryMusic bgMusic;
+    public bool randomMusic;
 
     public static MainLoop Instance = null;
 
@@ -55,24 +56,28 @@ public class MainLoop : MonoBehaviour
             yield return null;
         }
 
-        try
+        if (randomMusic)
         {
-            Debug.Log($"尝试播放音乐: {bgMusic}");
-            // 播放背景音乐
+            // 获取音乐库中所有音乐
+            var allMusics = Enum.GetValues(typeof(MainAudioLibraryMusic)) as MainAudioLibraryMusic[];
+            if (allMusics != null && allMusics.Length > 0)
+            {
+                // 随机选择一首音乐
+                int randomIndex = UnityEngine.Random.Range(0, allMusics.Length);
+                MainAudioLibraryMusic randomMusic = allMusics[randomIndex];
+                AudioManager.PlayMusic(randomMusic);
+                Debug.Log($"成功随机播放音乐: {randomMusic}");
+            }
+        }
+        else
+        {
+            // 播放指定音乐
             AudioManager.PlayMusic(bgMusic);
             Debug.Log($"成功播放音乐: {bgMusic}");
         }
-        catch (KeyNotFoundException ex)
-        {
-            Debug.LogError($"未找到 {bgMusic} 对应的音乐文件，请检查 JSAM 配置。错误信息: {ex.Message}");
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"播放音乐时发生未知错误: {ex.Message}");
-        }
     }
 
-    void FixedUpdate() 
+    void FixedUpdate()
     {
         CurRoundTIme += Time.fixedDeltaTime;
         if (CurRoundTIme >= PerRoundTime)
@@ -87,13 +92,13 @@ public class MainLoop : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     void NextRound()
     {
         // 结算血量、粮食等
-        var roundCostFood = Queen.PerDayCost[CurRound - 1];
+        var roundCostFood = Queen.PerDayCost;
         if (roundCostFood > FoodSystem.FoodNum)
         {
             // 食物不足，扣血
@@ -104,8 +109,13 @@ public class MainLoop : MonoBehaviour
                 return;
             }
         }
-        // 切换、移动场景
+        // 扣除食物
         FoodSystem.SpendFood(Math.Min(roundCostFood, FoodSystem.FoodNum));
+        // 生虫子
+        for (int i = 0; i < Queen.PerDayGain; i++)
+        {
+            BugSystem.CreateNewBug(Queen.transform.position);
+        }
     }
 
     void GameOver()

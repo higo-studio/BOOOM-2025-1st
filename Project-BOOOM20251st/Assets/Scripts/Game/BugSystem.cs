@@ -6,6 +6,7 @@ using System.Linq;
 
 public class BugSystem : MonoBehaviour
 {
+    public GameObject bugPrefab;
     public int OriginHP { get { return MainLoop.Instance.UpgradeSystem.bugData.HP; } }
     public float MoveSpeed { get { return MainLoop.Instance.UpgradeSystem.bugData.MoveSpeed; } }
     public int CarryNum { get { return MainLoop.Instance.UpgradeSystem.bugData.CarryNum; } }
@@ -20,6 +21,16 @@ public class BugSystem : MonoBehaviour
     public void RemoveBug(BugUnit bug)
     {
         bugs.Remove(bug);
+    }
+
+    /// <summary>
+    /// 创建新的虫子
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public void CreateNewBug(Vector3 position)
+    {
+        Instantiate(bugPrefab, position, Quaternion.identity, GameObject.Find("BugGroup").transform);
     }
 
     public void Decide()
@@ -59,7 +70,7 @@ public class BugSystem : MonoBehaviour
 
     private void DoFreeRandom()
     {
-        
+
     }
 }
 
